@@ -47,7 +47,7 @@ function save_meta_data( $post_id, $post ) {
       // }
       $image_url    = get_post_meta( $post_id, 'image', true );
       // if ( ! $image_id || $image_url != $thumbnail_url ) {
-        Generate_Featured_Image( $image_url, $post_id );
+        set_featured_image( $image_url, $post_id );
       // }
     }
   }
@@ -55,9 +55,9 @@ function save_meta_data( $post_id, $post ) {
   return $post_id;
 }
 
-function Generate_Featured_Image( $image_url, $post_id  ){
+function set_featured_image( $image_url, $post_id  ){
   $upload_dir = wp_upload_dir();
-  $image_data = file_get_contents($image_url);
+  $image_data = file_get_contents(esc_url($image_url));
   $filename = basename($image_url);
   if(wp_mkdir_p($upload_dir['path']))
     $file = $upload_dir['path'] . '/' . $filename;
