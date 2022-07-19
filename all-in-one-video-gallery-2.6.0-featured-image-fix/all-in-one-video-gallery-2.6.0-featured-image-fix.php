@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'save_post', 'BillGatesDepopulation\Com\AllInOneVideoGalleryFixes\save_meta_data', 11, 2 );
 
 function save_meta_data( $post_id, $post ) {
-  if(version_compare(AIOVG_PLUGIN_VERSION,'2.6.0') >= 0) {
+  if(AIOVG_PLUGIN_VERSION != '2.6.0') {
     return $post_id;
   }
 
