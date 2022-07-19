@@ -40,15 +40,15 @@ function save_meta_data( $post_id, $post ) {
     if ( wp_verify_nonce( $_POST['aiovg_video_sources_nonce'], 'aiovg_save_video_sources' ) ) {
       // OK to save meta data
 
-      $image_id = get_post_meta( $post_id, '_thumbnail_id', true );
-      $thumbnail_url = '';
-      if ($image_id) {
-        $thumbnail_url = get_post_meta( $image_id, '_wp_attached_file', true );
-      }
+      // $image_id = get_post_meta( $post_id, '_thumbnail_id', true );
+      // $thumbnail_url = '';
+      // if ($image_id) {
+      //   $thumbnail_url = get_post_meta( $image_id, '_wp_attached_file', true );
+      // }
       $image_url    = get_post_meta( $post_id, 'image', true );
-      if ( ! $image_id || $image_url != $thumbnail_url ) {
+      // if ( ! $image_id || $image_url != $thumbnail_url ) {
         Generate_Featured_Image( $image_url, $post_id );
-      }
+      // }
     }
   }
 
