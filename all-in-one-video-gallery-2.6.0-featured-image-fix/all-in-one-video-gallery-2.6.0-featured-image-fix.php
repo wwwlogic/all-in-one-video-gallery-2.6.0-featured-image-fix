@@ -42,7 +42,7 @@ function save_meta_data( $post_id, $post ) {
 
       $image_id = get_post_meta( $post_id, '_thumbnail_id', true );
       $image_url    = get_post_meta( $post_id, 'image', true );
-      if ( ! $image_id ) {
+      if ( false == $image_id ) {
         set_featured_image( $image_url, $post_id );
       }
     }
