@@ -55,6 +55,11 @@ function set_featured_image( $image_url, $post_id  ){
   $upload_dir = wp_upload_dir();
   $image_data = file_get_contents(esc_url_raw($image_url));
   $filename = basename($image_url);
+
+  if ( empty($image_data) ) {
+    return;
+  }
+
   if(wp_mkdir_p($upload_dir['path']))
     $file = $upload_dir['path'] . '/' . $filename;
   else
