@@ -8,13 +8,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+add_action('init', 'BillGatesDepopulation\Com\AllInOneVideoGalleryFixes\attach_featured', 11, 2);
 add_action( 'save_post', 'BillGatesDepopulation\Com\AllInOneVideoGalleryFixes\save_meta_data', 11, 2 );
 
+function attach_featured() {
+    add_post_type_support( 'aiovg_videos', 'thumbnail' );
+}
 function save_meta_data( $post_id, $post ) {
-  if(AIOVG_PLUGIN_VERSION != '2.6.0') {
-    return $post_id;
-  }
-
   if ( ! isset( $_POST['post_type'] ) ) {
     return $post_id;
   }
