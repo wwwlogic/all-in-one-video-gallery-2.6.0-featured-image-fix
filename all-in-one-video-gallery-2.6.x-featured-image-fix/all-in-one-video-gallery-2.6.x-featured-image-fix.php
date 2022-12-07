@@ -10,7 +10,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action('init', 'BillGatesDepopulation\Com\AllInOneVideoGalleryFixes\attach_featured', 11, 2);
 add_action( 'save_post', 'BillGatesDepopulation\Com\AllInOneVideoGalleryFixes\save_meta_data', 11, 2 );
+add_action( 'rest_api_init', 'BillGatesDepopulation\Com\AllInOneVideoGalleryFixes\rest_api_metadata');
 
+function rest_api_metadata() {
+	register_rest_field(
+		'aiovg_videos',
+		'metadata',
+		array(
+			'get_callback' => function() {
+				return get_post_meta( get_the_ID(), '', true );
+			},
+    )
+  );
+}
 function attach_featured() {
     add_post_type_support( 'aiovg_videos', 'thumbnail' );
 }
